@@ -1,9 +1,5 @@
-# Text Generation Model Selection using TOPSIS
+# LLM Evaluation and Model Selection Framework
 
-## 📌 Assignment Overview
-As per the assignment instructions, the task is to apply the **TOPSIS (Technique for Order Preference by Similarity to Ideal Solution)** method to identify the best pre-trained model for a specific NLP task.
-
-Since my **roll number ends with 1**, the assigned task is **Text Generation**.
 
 This project evaluates multiple pre-trained text generation models using real performance metrics and ranks them using the TOPSIS multi-criteria decision-making approach.
 
