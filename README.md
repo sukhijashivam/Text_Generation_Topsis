@@ -1,83 +1,174 @@
-# LLM Evaluation and Model Selection Framework
+# LLM Benchmarking and Model Selection Framework
 
+## Overview
 
-This project evaluates multiple pre-trained text generation models using real performance metrics and ranks them using the TOPSIS multi-criteria decision-making approach.
+Selecting the right Large Language Model (LLM) for a specific application requires balancing multiple factors such as response quality, inference speed, model size, and computational efficiency.
 
----
+This project presents a systematic framework for evaluating and ranking pre-trained text generation models using the TOPSIS (Technique for Order Preference by Similarity to Ideal Solution) multi-criteria decision-making algorithm.
 
-## 🎯 Objective
-The objective of this project is to select the most suitable pre-trained text generation model by:
-- Testing models on a common input prompt
-- Extracting real performance metrics
-- Applying the TOPSIS methodology
-- Ranking models based on closeness to the ideal solution
+The framework benchmarks multiple transformer-based language models on real-world text generation tasks and identifies the most suitable model based on configurable evaluation criteria.
 
 ---
 
-## 🤖 Models Evaluated
-The following pre-trained text generation models were evaluated:
+## Features
 
-| Model Name     |
-|---------------|
-| GPT-2          |
-| DistilGPT-2    |
-| T5-Small       |
-| BART-Base      |
-
-All models were accessed using the **Hugging Face Transformers** library.
-
----
-
-## 📊 Evaluation Criteria
-Each model was evaluated using the following criteria:
-
-| Criterion   | Description                                                     | Type     |
-|------------|-----------------------------------------------------------------|----------|
-| Quality     | Output length (word count) as a proxy for generation richness   | Benefit  |
-| Latency     | Inference time required to generate text                        | Cost     |
-| Model Size  | Size of the model in MB                                         | Cost     |
-| Perplexity  | Measure of language modeling confidence                         | Cost     |
+* Evaluate multiple pre-trained text generation models
+* Measure real inference latency
+* Compare model sizes
+* Estimate language generation quality
+* Calculate perplexity scores
+* Rank models using TOPSIS
+* Generate visual performance comparisons
+* Support customizable evaluation weights
 
 ---
 
-## ⚖️ Criteria Weights
-The importance of each criterion was defined as follows:
+## Models Evaluated
 
-| Criterion   | Weight |
-|------------|--------|
-| Quality     | 0.30   |
-| Latency     | 0.25   |
-| Model Size  | 0.20   |
-| Perplexity  | 0.25   |
-
-The sum of all weights equals **1**.
+| Model       | Architecture                               |
+| ----------- | ------------------------------------------ |
+| GPT-2       | Decoder-only Transformer                   |
+| DistilGPT-2 | Distilled GPT-2                            |
+| T5-Small    | Encoder-Decoder Transformer                |
+| BART-Base   | Denoising Sequence-to-Sequence Transformer |
 
 ---
 
-## 🧮 Methodology
-The TOPSIS method was implemented from scratch without using any external TOPSIS libraries.  
-The following steps were followed:
+## Evaluation Metrics
 
-1. Construction of the decision matrix using extracted model metrics  
-2. Normalization of the decision matrix using vector normalization  
-3. Application of weights to the normalized matrix  
-4. Identification of ideal best and ideal worst solutions  
-5. Calculation of Euclidean distances from ideal solutions  
-6. Computation of the closeness coefficient  
-7. Ranking of models based on TOPSIS scores  
+The framework evaluates models using four key criteria:
 
----
-
-## 📈 Results
-After applying TOPSIS, each model received a closeness coefficient score.  
-The model with the **highest TOPSIS score** is considered the most suitable pre-trained model for text generation under the chosen criteria.
-
-A bar graph was generated to visually compare the TOPSIS scores of all evaluated models.
+| Metric             | Description                    | Type    |
+| ------------------ | ------------------------------ | ------- |
+| Generation Quality | Richness of generated output   | Benefit |
+| Inference Latency  | Time required to generate text | Cost    |
+| Model Size         | Memory footprint of the model  | Cost    |
+| Perplexity         | Language modeling confidence   | Cost    |
 
 ---
 
-## ▶️ How to Run the Project
+## Methodology
 
-### Install Dependencies
+The project implements TOPSIS from scratch without relying on external decision-making libraries.
+
+### Workflow
+
+1. Load pre-trained language models
+2. Generate outputs using a common prompt
+3. Extract evaluation metrics
+4. Construct decision matrix
+5. Normalize metrics
+6. Apply weighted scoring
+7. Compute ideal best and worst solutions
+8. Calculate Euclidean distances
+9. Generate TOPSIS scores
+10. Rank models by closeness coefficient
+
+---
+
+## System Architecture
+
+```text
+Input Prompt
+      │
+      ▼
+Pre-trained LLMs
+(GPT-2, DistilGPT-2, T5, BART)
+      │
+      ▼
+Performance Evaluation
+      │
+      ├── Generation Quality
+      ├── Latency
+      ├── Model Size
+      └── Perplexity
+      │
+      ▼
+Decision Matrix
+      │
+      ▼
+TOPSIS Algorithm
+      │
+      ▼
+Model Ranking
+      │
+      ▼
+Visualization Dashboard
+```
+
+---
+
+## Tech Stack
+
+* Python
+* Hugging Face Transformers
+* PyTorch
+* NumPy
+* Pandas
+* Matplotlib
+
+---
+
+## Installation
+
 ```bash
-pip install torch transformers pandas numpy matplotlib sentencepiece
+git clone https://github.com/sukhijashivam/Text_Generation_Topsis.git
+
+cd Text_Generation_Topsis
+
+pip install -r requirements.txt
+```
+
+---
+
+## Run
+
+```bash
+python main.py
+```
+
+---
+
+## Results
+
+The framework produces:
+
+* Performance comparison tables
+* TOPSIS scores
+* Model rankings
+* Visualization charts
+
+The model with the highest TOPSIS score is identified as the optimal text generation model under the selected evaluation criteria.
+
+---
+
+## Applications
+
+* LLM Selection
+* AI Product Development
+* NLP Research
+* Model Benchmarking
+* Resource-Constrained Deployments
+* Generative AI Systems
+
+---
+
+## Future Improvements
+
+* Support for Llama Models
+* Support for Mistral Models
+* RAG-based evaluation
+* Human preference scoring
+* Automated prompt benchmarking
+* Multi-dataset evaluation
+
+---
+
+## Author
+
+Shivam Sukhija
+
+Computer Engineering, Thapar Institute of Engineering and Technology
+
+Focused on Machine Learning, Generative AI, and Backend Development.
+
